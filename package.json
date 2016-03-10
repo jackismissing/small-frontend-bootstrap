@@ -1,21 +1,18 @@
 {
   "private": true,
   "devDependencies": {
-    "browser-sync": "^2.10.0",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-buster": "^1.0.0",
-    "gulp-debug": "^2.1.2",
-    "gulp-minify-css": "^1.2.2",
-    "gulp-notify": "^2.2.0",
-    "gulp-replace": "^0.5.4",
+    "merge-stream": "^1.0.0",
+    "jspm": "^0.16.15",
+    "gulp-watch": "^4.3.5",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.1.1",
-    "gulp-watch": "^4.3.5",
-    "jspm": "^0.16.15",
-    "merge-stream": "^1.0.0",
-    "vinyl-paths": "^2.1.0"
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-strip-debug": "^1.1.0",
+    "browser-sync": "^2.10.0"
   },
   "scripts": {
     "start": "npm install; jspm init; jspm install; gulp;"
@@ -25,8 +22,6 @@
       "baseURL": "public"
     },
     "dependencies": {
-      "bootstrap": "npm:bootstrap@^3.3.6",
-      "defaults": "npm:defaults@^1.0.3",
       "gsap": "npm:gsap@^1.18.0",
       "normalize-styl": "npm:normalize-styl@^3.0.3",
       "raf": "npm:raf@^3.1.0",

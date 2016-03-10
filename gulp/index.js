@@ -12,7 +12,6 @@ var notify          = require('gulp-notify');
 var debug           = require('gulp-debug');
 var stripDebug      = require('gulp-strip-debug');
 var browserSync     = require('browser-sync').create();
-var modernizr       = require('modernizr');
 
 /**
  * ------------------------------------------------------------
@@ -60,6 +59,9 @@ gulp.task('watch', ['browserSync', 'watch:js', 'watch:css', 'watch:views']);
 /* Instantiates BrowserSync */
 gulp.task('browserSync', function() {
     browserSync.init(['**'], {
+        server: {
+            baseDir: "./public"
+        },
         watchOptions: {
             ignored: ['**/*']
         }
@@ -109,7 +111,7 @@ gulp.task('watch:css', function() {
  * Doesn't copy anything, just notifies browserSync
  */
 gulp.task('watch:views', function() {
-    var views = config.srcPath + '/views/**/*';
+    var views = config.publicPath + '/index.html';
     watch(views, function(file) {
         return gulp.src(file.path)
             .pipe(browserSync.stream());
@@ -268,26 +270,3 @@ function mkdirRecursive(dir, originDir, mode, cb) {
         }
     });
 };
-
-/**
- * ------------------------------------------------------------
- * Modernizr
- * https://github.com/modernizr/modernizr
- * ------------------------------------------------------------
- */
-gulp.task('modernizr', function() {
-    console.log('Building Modernizr');
-    var modernizrPath = config.publicPath + '/js/vendor/modernizr.js';
-    return modernizr.build({}, function(result) {
-        mkdirRecursive(config.publicPath + '/js/vendor', null, 0755, function() {
-            fs.writeFile(config.publicPath + '/js/vendor/modernizr.js', result, {flags: 'w'}, function(error) {
-                if (error) {
-                    throw error;
-                } else {
-                    console.log('Modernizr built');
-                }
-            });
-        });
-    });
-});
-
